@@ -15,7 +15,7 @@ public class Vendor
     private int deposit;
     private int change;
     //make a private static double variable called totalSales that has an initial value of 0
-
+    private static double totalSales = 0.0;
 
     /**
      * Constructs a Vendor
@@ -25,6 +25,8 @@ public class Vendor
     public Vendor(int price, int stock)
     {
         //You need to complete this using this. notation
+        this.price = price;
+        this.stock = stock;
     }
 
     /**
@@ -36,6 +38,7 @@ public class Vendor
     public void setStock(int stock)
     {
         //You need to complete this using this. notation
+        this.stock = stock;
     }
 
     /**
@@ -45,6 +48,7 @@ public class Vendor
     public int getStock()
     {
         //complete this
+        return this.stock;
     }
 
     /**
@@ -55,6 +59,7 @@ public class Vendor
     public void addMoney(int d)
     {
         //You need to complete this using mutator
+        this.deposit += d;
     }
 
     /**
@@ -63,7 +68,7 @@ public class Vendor
      */
     public int getDeposit()
     {
-        return deposit;
+        return this.deposit;
     }
 
     /**
@@ -78,6 +83,16 @@ public class Vendor
     public boolean makeSale()
     {
         //create the makesale method
+        if(this.stock > 0 && this.deposit >= this.price){
+            this.stock --;
+            this.change = this.deposit - this.price;
+            return true;
+    }
+        else{
+            this.change +=this.deposit;
+            return false;
+    }
+
     }
 
     /**
@@ -98,9 +113,10 @@ public class Vendor
         /*
         note that the coin class has a .getQuarters(), a .getDimes() etc etc (use the coin class!)
         */
-        
+        Coins c1 = new Coins(this.change);
 
-        String changeString="";
+        String changeString="quarters: " + c1.getQuarters() + " Dimes: " + c1.getDimes() +
+                " nickels:" + c1.getNickles() + "pennies: " + c1.getPennies();
 
         return changeString;
     }
@@ -114,5 +130,8 @@ public class Vendor
     public static double getTotalSales()
     {
         //complete this
+        double total = this.totalSales;
+        this.totalSales = 0.0;
+        return total;
     }
 }

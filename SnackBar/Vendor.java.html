@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>Vendor.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+.s5 { color: #629755; font-weight: bold; font-style: italic;}
+.s6 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Vendor.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">SnackBar</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">Number42.Coins</span><span class="s0">;</span>
+
+<span class="s2">/**</span>
+ <span class="s2">* This class implements a vendor that sells one kind</span>
+ <span class="s2">* of items. A vendor carries out sales transactions.</span>
+ <span class="s2">*/</span>
+<span class="s0">public class </span><span class="s1">Vendor</span>
+<span class="s1">{</span>
+    <span class="s3">// Fields:</span>
+
+    <span class="s0">private int </span><span class="s1">price</span><span class="s0">;</span>
+    <span class="s0">private int </span><span class="s1">stock</span><span class="s0">;</span>
+    <span class="s0">private int </span><span class="s1">deposit</span><span class="s0">;</span>
+    <span class="s0">private int </span><span class="s1">change</span><span class="s0">;</span>
+    <span class="s3">//make a private static double variable called totalSales that has an initial value of 0</span>
+    <span class="s0">private static double </span><span class="s1">totalSales = </span><span class="s4">0.0</span><span class="s0">;</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Constructs a Vendor</span>
+     <span class="s2">* </span><span class="s5">@param </span><span class="s2">price the price of a single item in cents (int)</span>
+     <span class="s2">* </span><span class="s5">@param </span><span class="s2">stock number of items to place in stock (int)</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">Vendor(</span><span class="s0">int </span><span class="s1">price</span><span class="s0">, int </span><span class="s1">stock)</span>
+    <span class="s1">{</span>
+        <span class="s3">//You need to complete this using this. notation</span>
+        <span class="s0">this</span><span class="s1">.price = price</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.stock = stock</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Sets the quantity of items in stock.</span>
+     <span class="s2">* </span><span class="s5">@param </span><span class="s2">qty number of items to place in stock (int)</span>
+     <span class="s2">*/</span>
+
+
+    <span class="s0">public void </span><span class="s1">setStock(</span><span class="s0">int </span><span class="s1">stock)</span>
+    <span class="s1">{</span>
+        <span class="s3">//You need to complete this using this. notation</span>
+        <span class="s0">this</span><span class="s1">.stock = stock</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Returns the number of items currently in stock.</span>
+     <span class="s2">* </span><span class="s5">@return </span><span class="s2">number of items currently in stock (int)</span>
+     <span class="s2">*/</span>
+    <span class="s0">public int </span><span class="s1">getStock()</span>
+    <span class="s1">{</span>
+        <span class="s3">//complete this</span>
+        <span class="s0">return this</span><span class="s1">.stock</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Adds a specified amount (in cents) to the</span>
+     <span class="s2">* deposited amount.</span>
+     <span class="s2">* </span><span class="s5">@param </span><span class="s2">number of cents to add to the deposit (int)</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">addMoney(</span><span class="s0">int </span><span class="s1">d)</span>
+    <span class="s1">{</span>
+        <span class="s3">//You need to complete this using mutator</span>
+        <span class="s0">this</span><span class="s1">.deposit += d</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Returns the currently deposited amount (in cents).</span>
+     <span class="s2">* </span><span class="s5">@return </span><span class="s2">number of cents in the current deposit (int)</span>
+     <span class="s2">*/</span>
+    <span class="s0">public int </span><span class="s1">getDeposit()</span>
+    <span class="s1">{</span>
+        <span class="s0">return this</span><span class="s1">.deposit</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Implements a sale.  If there are items in stock and</span>
+     <span class="s2">* the deposited amount is greater than or equal to</span>
+     <span class="s2">* the single item price, then adjusts the stock</span>
+     <span class="s2">* and calculates and sets change and returns true;</span>
+     <span class="s2">* otherwise refunds the whole deposit (moves it into</span>
+     <span class="s2">* change) and returns false.</span>
+     <span class="s2">* </span><span class="s5">@return </span><span class="s2">true for a successful sale, false otherwise (boolean)</span>
+     <span class="s2">*/</span>
+    <span class="s0">public boolean </span><span class="s1">makeSale()</span>
+    <span class="s1">{</span>
+        <span class="s3">//create the makesale method</span>
+        <span class="s0">if</span><span class="s1">(</span><span class="s0">this</span><span class="s1">.stock &gt; </span><span class="s4">0 </span><span class="s1">&amp;&amp; </span><span class="s0">this</span><span class="s1">.deposit &gt;= </span><span class="s0">this</span><span class="s1">.price){</span>
+            <span class="s0">this</span><span class="s1">.stock --</span><span class="s0">;</span>
+            <span class="s0">this</span><span class="s1">.change = </span><span class="s0">this</span><span class="s1">.deposit - </span><span class="s0">this</span><span class="s1">.price</span><span class="s0">;</span>
+            <span class="s0">return true;</span>
+    <span class="s1">}</span>
+        <span class="s0">else</span><span class="s1">{</span>
+            <span class="s0">this</span><span class="s1">.change +=</span><span class="s0">this</span><span class="s1">.deposit</span><span class="s0">;</span>
+            <span class="s0">return false;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Returns and zeroes out the amount of change (from</span>
+     <span class="s2">* the last sale or refund).</span>
+     <span class="s2">* </span><span class="s5">@return </span><span class="s2">number of cents in the current change (int)</span>
+     <span class="s2">*/</span>
+    <span class="s0">public int </span><span class="s1">getChange()</span>
+    <span class="s1">{</span>
+        <span class="s0">int </span><span class="s1">c=change</span><span class="s0">;</span>
+        <span class="s1">change=</span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">c</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">String getChangeString()</span>
+    <span class="s1">{</span>
+        <span class="s3">//From Ethan: create a get method that returns the amount and type of coins that should be returned by the machine</span>
+        <span class="s3">/* 
+        note that the coin class has a .getQuarters(), a .getDimes() etc etc (use the coin class!) 
+        */</span>
+        <span class="s1">Coins c1 = </span><span class="s0">new </span><span class="s1">Coins(</span><span class="s0">this</span><span class="s1">.change)</span><span class="s0">;</span>
+
+        <span class="s1">String changeString=</span><span class="s6">&quot;quarters: &quot; </span><span class="s1">+ c1.getQuarters() + </span><span class="s6">&quot; Dimes: &quot; </span><span class="s1">+ c1.getDimes() +</span>
+                <span class="s6">&quot; nickels:&quot; </span><span class="s1">+ c1.getNickles() + </span><span class="s6">&quot;pennies: &quot; </span><span class="s1">+ c1.getPennies()</span><span class="s0">;</span>
+
+        <span class="s0">return </span><span class="s1">changeString</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    
+    <span class="s2">/**</span>
+    <span class="s2">* Returns the total number of sales and resets the total number of sales to 0</span>
+    <span class="s2">* Hint: use a temp variable</span>
+    <span class="s2">*</span>
+    <span class="s2">* </span><span class="s5">@return </span><span class="s2">number of sales</span>
+    <span class="s2">*/</span>
+    <span class="s0">public static double </span><span class="s1">getTotalSales()</span>
+    <span class="s1">{</span>
+        <span class="s3">//complete this</span>
+        <span class="s0">double </span><span class="s1">total = </span><span class="s0">this</span><span class="s1">.totalSales</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.totalSales = </span><span class="s4">0.0</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">total</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
